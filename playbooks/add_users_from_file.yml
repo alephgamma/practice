@@ -2,7 +2,7 @@
 - name: quickie playbook
   become: true
   hosts: all
-  vars_failes:
+  vars_files:
     - files/users.yml
   tasks:
     - name: add user
