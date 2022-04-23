@@ -1,0 +1,16 @@
+---
+- name: quickie playbook to delete users
+  become: true
+  hosts: all
+  vars:
+    usernames:
+      - billy
+      - joe
+      - jim
+      - bob
+  tasks:
+    - name: add user
+      user: 
+        name: "{{ item }}"
+        state: absent
+      loop: "{{ usernames }}"
