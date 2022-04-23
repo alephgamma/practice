@@ -3,7 +3,7 @@
   become: true
   hosts: all
   vars:
-    usernames
+    usernames:
       - billy
       - joe
       - jim
