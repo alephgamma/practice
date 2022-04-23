@@ -1,0 +1,16 @@
+---
+- name: playbook to add users
+  become: true
+  hosts: all
+  vars_files:
+    - ../files/users.yml
+  tasks:
+    - name: add group
+      group:
+        name: staff
+    - name: add user
+      user: 
+        name: "{{ item.key }}"
+        group: staff
+        comment: "{{ item.value.f }} {{ item.value.m }} {{ item.value.l }}"
+      loop: "{{ usernames }}"
