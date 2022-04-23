@@ -1,6 +1,18 @@
 ---
 usernames:
-  - billy
-  - joe
-  - jim
-  - bob
+  billy: 
+    f: William
+    m: F
+    l: Jones
+  joe
+    f: Joseph
+    m: N
+    l: DaBomb
+  jim
+    f: James
+    m: T
+    l: Kirk
+  bob
+    f: Robert
+    m: K
+    l: Apple
