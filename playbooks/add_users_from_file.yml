@@ -3,7 +3,7 @@
   become: true
   hosts: all
   vars_files:
-    - files/users.yml
+    - ../files/users.yml
   tasks:
     - name: add user
       user: 
