@@ -1,0 +1,12 @@
+---
+- name: quickie playbook
+  become: true
+  hosts: all
+  tasks:
+    - name: whoami
+      shell: 
+        cmd: whoami
+      register: w
+    - name: show
+      debug: 
+        msg: "{{ w }}"
