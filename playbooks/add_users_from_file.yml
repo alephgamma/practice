@@ -1,0 +1,11 @@
+---
+- name: quickie playbook
+  become: true
+  hosts: all
+  vars_failes:
+    - files/users.yml
+  tasks:
+    - name: add user
+      user: 
+        name: "{{ item }}"
+      loop: "{{ usernames }}"
