@@ -1,0 +1,17 @@
+---
+- hosts: webservers
+  become: true
+  tasks:
+    - yum:
+        name: httpd
+    - systemd:
+        name: httpd
+        state: started
+    - name: Transfer to http
+      copy:
+        src: ../files/package.tgz
+        dest: /var/www/html/package.tgz
+        remote_src: no
+    - shell: 'echo -e "---\nchecksum:" `sha256sum ../files/package.tgz | cut -f1 -d" "` >  ../files/integrity.yml'
+      delegate_to: localhost
+      become_user: cloud_user

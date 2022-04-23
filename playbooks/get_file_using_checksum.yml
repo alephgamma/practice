@@ -1,0 +1,11 @@
+---
+- hosts: databases
+  become: true
+  vars_files:
+    - ../files/integrity.yml
+  tasks:
+    - get_url:
+        url: http://3.87.99.168/package.tgz
+        dest: /tmp/package.tgz
+        checksum: "sha256:{{ item }}"
+      with_items: "{{ checksum }}"
