@@ -10,7 +10,7 @@
         name: staff
     - name: create PT password
       debug:
-        msg: {{ lookup('password','/tmp/'+ item.key +'.file length=10 chars=ascii_letters,digits,hexdigits') }}
+        msg: "{{ lookup('password','/tmp/'+ item.key +'.file length=10 chars=ascii_letters,digits,hexdigits') }}"
     - name: add user
       user: 
         name: "{{ item.key }}"
