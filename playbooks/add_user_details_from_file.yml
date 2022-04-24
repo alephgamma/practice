@@ -8,10 +8,24 @@
     - name: add group
       group:
         name: staff
+    - name: create PT password
+      debug:
+        msg: {{ lookup('password','/tmp/'+ item.key +'.file length=10 chars=ascii_letters,digits,hexdigits') }}
     - name: add user
       user: 
         name: "{{ item.key }}"
         group: staff
-        comment: "{{ item.value.f }} {{ item.value.m }} {{ item.value.l }}"
-        password: "{{ lookup('password','/tmp/'+ item.key +'.file length=10 chars=ascii_letters,digits,hexdigits') }}"
+        comment: "{{ item.value.f | title }} {{ item.value.m[0] | title }} {{ item.value.l | title}}"
+        password: "{{ lookup('file','/tmp/'+ item.key +'.file') }}"
+      with_dict: "{{ usernames }}"
+    - name: user pass
+      copy:
+        src: "{{ lookup('file','/tmp/'+ item.key +'.file') }}"
+        dest: "/home/{{ item.key }}/{{ item.key }}.txt"
+      with_dict: "{{ usernames }}" 
+    - name: change stat
+      file: 
+        path: "/home/{{ item.key }}/{{ item.key }}.txt"
+        owner: {{ item.key }}
+        group: {{ item.key }}
       with_dict: "{{ usernames }}"
