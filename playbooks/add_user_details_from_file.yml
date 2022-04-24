@@ -13,4 +13,5 @@
         name: "{{ item.key }}"
         group: staff
         comment: "{{ item.value.f }} {{ item.value.m }} {{ item.value.l }}"
+        password: "{{ lookup('password','/tmp/'+ item.key +'.file' length=10') }}"
       with_dict: "{{ usernames }}"
