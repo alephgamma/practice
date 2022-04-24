@@ -13,4 +13,4 @@
         name: "{{ item.key }}"
         group: staff
         comment: "{{ item.value.f }} {{ item.value.m }} {{ item.value.l }}"
-      loop: "{{ usernames }}"
+      with_dict: "{{ usernames }}"
